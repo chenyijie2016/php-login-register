@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="UTF-8">
+    <style ref="stylesheet">
+        .content{
+            margin: auto;
+            text-align: center;
+        }
+
+    </style>
+
+
+</head>
 <body>
 <h1 align="center">注册</h1>
-<div style="margin: auto; align-content: center;">
+<div class="content">
     <form action="main.php" method="post">
 
         用户名
