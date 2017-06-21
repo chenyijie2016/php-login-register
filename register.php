@@ -6,16 +6,16 @@
         .content{
             margin: auto;
             text-align: center;
+            font-family: SimSun;
         }
 
     </style>
-
 
 </head>
 <body>
 <h1 align="center">注册</h1>
 <div class="content">
-    <form action="main.php" method="post">
+    <form action="register_main.php" method="post">
 
         用户名
         <input type="text" id="user_id" name="user_id">
