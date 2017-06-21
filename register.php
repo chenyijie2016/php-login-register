@@ -7,24 +7,22 @@
             margin: auto;
             text-align: center;
             font-family: SimSun;
+            padding: 10px;
         }
-
     </style>
-
+    <title>Register</title>
 </head>
 <body>
-<h1 align="center">注册</h1>
+<h1 align="center">Register</h1>
 <div class="content">
     <form action="register_main.php" method="post">
-
-        用户名
+        &nbsp;USER ID
         <input type="text" id="user_id" name="user_id">
         <br>
-        密码
+        PASSWORD
         <input type="text" id="password" name="password">
         <br>
         <input type="submit" value="submit">
-
     </form>
 </div>
 
