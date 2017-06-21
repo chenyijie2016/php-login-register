@@ -30,7 +30,8 @@ if ($conn->connect_error)
 $user_exits = false;
 $password_correct = false;
 
-//get existed user data from table "data"
+//get all existed user data from table "data"
+//In the case where a small amount of data, otherwise use "WHERE"
 $user_id_list = mysqli_query($conn, "SELECT * FROM data");
 
 

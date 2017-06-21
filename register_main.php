@@ -11,6 +11,8 @@
 $user_id = $_POST["user_id"];
 $password = $_POST["password"];
 
+//TODO: Dealing with illegal characters to avoid SQL injection
+
 if ($user_id == "" || $password == "")
 {
     die("ID or Password can't be empty!");
@@ -35,7 +37,8 @@ if ($conn->connect_error)
 // echo "Connect Database Success<br>";
 
 
-//get existed user data
+//get all existed user data
+//In the case where a small amount of data
 $user_id_list = mysqli_query($conn, "SELECT id FROM data");
 //find if any exist user id
 $exist = false;
