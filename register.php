@@ -19,6 +19,9 @@
         &nbsp;USER ID
         <input type="text" id="user_id" name="user_id">
         <br>
+        NICKNAME
+        <input type="text" name="nickname" id="nickname">
+        <br>
         PASSWORD
         <input type="text" id="password" name="password">
         <br>

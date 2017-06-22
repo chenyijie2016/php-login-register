@@ -7,8 +7,14 @@
  */
 ?>
 <?php
-$user_id = $_POST["user_id"];
-$user_password = $_POST["password"];
+session_start();
+//$_SESSION["login"] = false;
+if (isset($_POST["user_id"]) and isset($_POST["password"]))
+{
+    $user_id = $_POST["user_id"];
+    $user_password = $_POST["password"];
+}
+
 
 
 // Your Database Settings
@@ -44,6 +50,8 @@ while ($user = mysqli_fetch_array($user_id_list))
         if ($user["password"] == $user_password)
         {
             $password_correct = true;
+            $_SESSION["login"] = true;
+            $_SESSION["user_id"] = $user_id;
         }
     }
 }
@@ -82,24 +90,26 @@ while ($user = mysqli_fetch_array($user_id_list))
 <h1 class="content">Log in</h1>
 <div class="content">
     <?php
-    echo "<h2>Login INFO</h2><br>";
-    echo "ID:" . $user_id . "<br>";
-    echo "PASSWORD:" . $user_password . "<br>";
+    //echo "ID:" . $user_id . "<br>";
+    //echo "PASSWORD:" . $user_password . "<br>";
 
     if (!$user_exits)
     {
-        die('<div class="fail">User does not exist</div>');
-
+        echo('<div class="fail">User does not exist</div>');
+        die('<a href="login.php">return to login</a>');
     }
 
     if(!$password_correct)
     {
-        die('<div class="fail">Wrong Password</div>');
+        echo('<div class="fail">Wrong Password</div>');
+        die('<a href="login.php">return to login</a>');
     }
 
     echo '<div class="success">Login Success!</div>';
 
     ?>
+
+    <a href="manger.php">Manger Your Data</a>
 </div>
 </body>
 </html>

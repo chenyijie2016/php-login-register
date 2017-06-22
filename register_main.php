@@ -10,12 +10,13 @@
 <?php
 $user_id = $_POST["user_id"];
 $password = $_POST["password"];
+$nickname = $_POST["nickname"];
 
 //TODO: Dealing with illegal characters to avoid SQL injection
 
-if ($user_id == "" || $password == "")
+if ($user_id == "" || $password == "" || $nickname == "")
 {
-    die("ID or Password can't be empty!");
+    die("ID or Password or Nickname can't be empty!");
 }
 
 
@@ -40,6 +41,7 @@ if ($conn->connect_error)
 //get all existed user data
 //In the case where a small amount of data
 $user_id_list = mysqli_query($conn, "SELECT id FROM data");
+
 //find if any exist user id
 $exist = false;
 
@@ -61,15 +63,15 @@ while ($user = mysqli_fetch_array($user_id_list))
         margin: auto;
         text-align: center;
     }
-    .success
-    {
+
+    .success {
         margin: auto;
         text-align: center;
         color: green;
         font-family: Consolas;
     }
-    .fail
-    {
+
+    .fail {
         margin: auto;
         text-align: center;
         color: red;
@@ -78,7 +80,7 @@ while ($user = mysqli_fetch_array($user_id_list))
 </style>
 <body>
 <h1 class="content">Register Result</h1>
-<p class="content">
+<div class="content">
     user_ID:<?php
     echo $_POST["user_id"] . "<br>";
 
@@ -88,27 +90,34 @@ while ($user = mysqli_fetch_array($user_id_list))
 
     ?>
 
-</p>
+</div>
 <div class="content">
     <?php
 
     if (!$exist)
     {
+        //set user
         $sql = "INSERT INTO data  (id ,password) VALUES ('" . $_POST["user_id"] . "','" . $_POST["password"] . "')";
+
+        //set defult user information
+        $sql_user_data = "INSERT INTO user_data (nickname, sex, nationality,age,user_id )VALUES('" . $nickname . "', '0', 'N/A', '0','" . $_POST["user_id"] . "')";
+
         if (mysqli_query($conn, $sql))
         {
             echo '<div class="success">Register success!</div>';
+            echo '<div class="success">Please save your user name and password!</div>';
+            mysqli_query($conn, $sql_user_data);
+
         } else
         {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            echo "Error: " . $sql . " < br>" . mysqli_error($conn);
         }
-    }
-    else
+    } else
     {
         echo '<div class="fail">Register Error: User ID already exists!</div>';
     }
     ?>
-    <a href="login.php">Log in</a>
+    <a href="login.php">>>Log in<<</a>
 </div>
 </body>
 </html>
